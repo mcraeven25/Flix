@@ -12,32 +12,26 @@ class IndexController extends Controller
 
     public function index()
     {
-        $showingMovies = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/movie/now_playing')
+        $showingMovies = Http::get('https://api.themoviedb.org/3/movie/now_playing?api_key=477b22beec14efc40a4349c4cf43fe2b')
             ->json()['results'];
-        $popularMovies = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3//movie/popular')
+        $popularMovies = Http::get('https://api.themoviedb.org/3/movie/popular?api_key=477b22beec14efc40a4349c4cf43fe2b')
             ->json()['results'];
 
-        $genresArr = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/genre/movie/list')
+        $genresArr = Http::get('https://api.themoviedb.org/3/genre/movie/list?api_key=477b22beec14efc40a4349c4cf43fe2b')
             ->json()['genres'];
 
         $genres = collect($genresArr)->mapWithKeys(function ($genre) {
             return [$genre['id'] => $genre['name']];
         });
-        $genresArrTV = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/genre/tv/list')
+        $genresArrTV = Http::get('https://api.themoviedb.org/3/genre/tv/list?api_key=477b22beec14efc40a4349c4cf43fe2b')
             ->json()['genres'];
 
         $genresTv = collect($genresArrTV)->mapWithKeys(function ($genre) {
             return [$genre['id'] => $genre['name']];
         });
-        $top = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/tv/top_rated')
+        $top = Http::get('https://api.themoviedb.org/3/tv/top_rated?api_key=477b22beec14efc40a4349c4cf43fe2b')
             ->json()['results'];
-        $popular = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/tv/popular')
+        $popular = Http::get('https://api.themoviedb.org/3/tv/popular?api_key=477b22beec14efc40a4349c4cf43fe2b')
             ->json()['results'];
 
         return view('index', [
