@@ -9,7 +9,7 @@
         </div>
     </form>
     @if (strlen($search) > 2)
-        <div class="absolute bg-gray-800 w-80 mt-10 rounded z-20  md:w-[32-rem] sm:w-52 ">
+        <div class="absolute bg-gray-900 w-80 mt-10 rounded z-20  md:w-[32-rem] sm:w-52 ">
             @if ($searchResults->count() > 0)
                 <ul class="text-white">
                     @foreach ($searchResults as $result)
