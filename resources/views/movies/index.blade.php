@@ -10,7 +10,7 @@ $link = 'movies';
 @endphp
 
 <x-layout>
-    <div class=" px-2 md:px-32  py-[20px]">
+    <div class=" px-4 md:px-32  py-[20px]">
         <h2 class="text-third text-4xl mb-4 md:text-center">Movies</h2>
         <div class="px-10">
             <x-cards :name='$toprated' :movies='$top' :genres='$genres' class="mt-10" :file='$title'
